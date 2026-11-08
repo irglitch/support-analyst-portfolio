@@ -1,0 +1,25 @@
+2026-11-07T07:58:11Z [INFO] [payment-api] [TXN_OK] Transaction TXN-1001 posted successfully
+2026-11-07T07:59:02Z [INFO] [auth-service] [LOGIN_OK] User login succeeded
+2026-11-07T08:01:44Z [INFO] [file-transfer] [FILE_RECEIVED] settlement_20261107.csv received (1,204 records)
+2026-11-07T08:03:19Z [WARN] [payment-api] [SLOW_QUERY] Query exceeded 2s threshold (2.4s)
+2026-11-07T08:05:37Z [INFO] [reconciliation] [RECON_START] Daily reconciliation started
+2026-11-07T08:11:52Z [WARN] [payment-api] [DB_POOL_WAIT] Threads waiting for a database connection (5)
+2026-11-07T08:12:04Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1042 held in Pending
+2026-11-07T08:12:31Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1043 held in Pending
+2026-11-07T08:13:09Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1051 held in Pending
+2026-11-07T08:13:47Z [WARN] [payment-api] [DB_POOL_WAIT] Threads waiting for a database connection (18)
+2026-11-07T08:14:22Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1060 held in Pending
+2026-11-07T08:15:03Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1064 held in Pending
+2026-11-07T08:15:40Z [ERROR] [reconciliation] [DB_CONN_TIMEOUT] Database connection timed out — reconciliation read failed
+2026-11-07T08:16:18Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1071 held in Pending
+2026-11-07T08:17:55Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1079 held in Pending
+2026-11-07T08:19:12Z [WARN] [file-transfer] [RETRY] Retrying transfer to reporting folder (attempt 2)
+2026-11-07T08:21:30Z [ERROR] [file-transfer] [FILE_NOT_FOUND] settlement_20261107.csv not found in outbound folder — posting paused
+2026-11-07T08:22:04Z [ERROR] [file-transfer] [FILE_NOT_FOUND] settlement_20261107.csv not found in outbound folder — posting paused
+2026-11-07T08:24:41Z [INFO] [auth-service] [LOGIN_OK] User login succeeded
+2026-11-07T08:26:15Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1088 held in Pending
+2026-11-07T08:28:59Z [ERROR] [payment-api] [DB_CONN_TIMEOUT] Database connection timed out after 30s — transaction TXN-1093 held in Pending
+2026-11-07T08:31:20Z [WARN] [reconciliation] [RECON_DELAY] Reconciliation running 15 minutes behind schedule
+2026-11-07T08:34:02Z [ERROR] [payment-api] [VALIDATION] Transaction TXN-1101 rejected — missing mandatory field: cost_centre
+2026-11-07T08:35:47Z [INFO] [payment-api] [TXN_OK] Transaction TXN-1105 posted successfully after database service restart
+2026-11-07T08:36:10Z [INFO] [reconciliation] [RECON_RESUMED] Reconciliation resumed after database recovery
