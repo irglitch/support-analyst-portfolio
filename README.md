@@ -38,7 +38,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | Day | Project | Scenario in one line | Status |
 |---|---|---|---|
 | 01 | [Log Triage Analyzer](projects/day-01-log-triage-analyzer/) | Transactions stuck "Pending" — find the failing service in a 4,000-line log in minutes, not 45 | ✅ Done 2026-11-07 |
-| 02 | Linux Health Check Script | "The app is slow" — check CPU / memory / disk / services before escalating | ⏳ Scheduled |
+| 02 | [Linux Health Check Script](projects/day-02-linux-health-check/) | "The app is slow" — root disk 92% full, service down, one process at 87% CPU | ✅ Done 2026-11-08 |
 | 03 | SQL Reconciliation Break Finder | Finance reports a totals mismatch between two systems | ⏳ Scheduled |
 | 04 | File Transfer Monitor | The 7 AM settlement file never arrived — detect it before the business does | ⏳ Scheduled |
 | 05 | Incident SLA Tracker | Tickets silently breaching SLA with no early warning | ⏳ Scheduled |

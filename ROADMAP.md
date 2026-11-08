@@ -5,7 +5,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 
 ## Week 1 — Triage, Logs & The Daily BAU
 - [x] **Day 01 — Log Triage Analyzer** — stuck transactions, find the failing service fast (Python)
-- [ ] **Day 02 — Linux Health Check Script** — "app is slow" first-response checks (Bash)
+- [x] **Day 02 — Linux Health Check Script** — "app is slow" first-response checks (Bash)
 - [ ] **Day 03 — SQL Reconciliation Break Finder** — totals mismatch between two systems (SQL + Python)
 - [ ] **Day 04 — File Transfer Monitor** — missing 7 AM settlement file alert (Python)
 - [ ] **Day 05 — Incident SLA Tracker** — spot SLA breaches before they happen (Python + CSV)

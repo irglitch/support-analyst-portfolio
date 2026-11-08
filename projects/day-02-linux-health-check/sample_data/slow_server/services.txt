@@ -1,0 +1,4 @@
+payment-api failed
+nginx active
+postgresql active
+file-watcher active

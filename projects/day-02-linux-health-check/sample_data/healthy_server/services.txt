@@ -1,0 +1,4 @@
+payment-api active
+nginx active
+postgresql active
+file-watcher active
