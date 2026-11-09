@@ -39,7 +39,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 |---|---|---|---|
 | 01 | [Log Triage Analyzer](projects/day-01-log-triage-analyzer/) | Transactions stuck "Pending" — find the failing service in a 4,000-line log in minutes, not 45 | ✅ Done 2026-11-07 |
 | 02 | [Linux Health Check Script](projects/day-02-linux-health-check/) | "The app is slow" — root disk 92% full, service down, one process at 87% CPU | ✅ Done 2026-11-08 |
-| 03 | SQL Reconciliation Break Finder | Finance reports a totals mismatch between two systems | ⏳ Scheduled |
+| 03 | [SQL Reconciliation Break Finder](projects/day-03-sql-reconciliation-break-finder/) | Finance totals don't match — 4 named transactions explain a $64.23 gap, 13 of 16 match exactly | ✅ Done 2026-11-09 |
 | 04 | File Transfer Monitor | The 7 AM settlement file never arrived — detect it before the business does | ⏳ Scheduled |
 | 05 | Incident SLA Tracker | Tickets silently breaching SLA with no early warning | ⏳ Scheduled |
 

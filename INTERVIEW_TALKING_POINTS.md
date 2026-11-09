@@ -31,6 +31,24 @@ handled: stuck transactions caused by a database connection failure."
 - **What it shows:** First-response triage under pressure, Linux basics, and
   escalating with evidence instead of a guess (see the runbook).
 
+## For Day 03 — SQL Reconciliation Break Finder
+- **Situation:** Finance reports the daily totals don't match — billing says
+  $3,540.23, the ledger says $3,476.00 — and month-end close is blocked until
+  the gap is explained. Both extracts have 16 transactions, so counting rows
+  doesn't help.
+- **Action:** I loaded both extracts into SQLite and ran reconciliation queries
+  — totals per system, billed-but-never-posted, posted-but-never-billed, and
+  same-transaction-different-amount — storing money as integer cents so the
+  totals are exact. The tool writes a one-page report naming every break.
+- **Result (in the scenario):** Exactly 4 transactions explain the whole
+  $64.23 gap — one missing posting ($145.00), one orphan posting ($89.50),
+  and two amount mismatches including a transposed digit ($210.00 vs $201.00).
+  13 of 16 transactions match exactly, so finance chases 4 rows instead of
+  re-checking the whole day.
+- **What it shows:** SQL JOINs and the LEFT JOIN anti-pattern, reconciliation
+  thinking, exact money handling, and escalating with named transactions
+  instead of just a gap figure (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
