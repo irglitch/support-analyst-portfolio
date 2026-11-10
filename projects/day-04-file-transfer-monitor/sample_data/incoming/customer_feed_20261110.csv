@@ -1,0 +1,9 @@
+customer_id,full_name,email,account_status,updated_at
+CUST-1001,Anita Rao,anita.rao@example.com,active,2026-11-10T05:58:11Z
+CUST-1002,Marcus Chen,marcus.chen@example.com,active,2026-11-10T05:58:14Z
+CUST-1003,Priya Nair,priya.nair@example.com,suspended,2026-11-10T05:58:19Z
+CUST-1004,Daniel Okafor,daniel.okafor@example.com,active,2026-11-10T05:58:22Z
+CUST-1005,Sofia Petrova,sofia.petrova@example.com,active,2026-11-10T05:58:27Z
+CUST-1006,Liam Murphy,liam.murphy@example.com,closed,2026-11-10T05:58:31Z
+CUST-1007,Hana Sato,hana.sato@example.com,active,2026-11-10T05:58:35Z
+CUST-1008,Diego Alvarez,diego.alvarez@example.com,active,2026-11-10T05:58:40Z

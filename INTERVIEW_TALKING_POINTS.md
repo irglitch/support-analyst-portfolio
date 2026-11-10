@@ -49,6 +49,29 @@ handled: stuck transactions caused by a database connection failure."
   thinking, exact money handling, and escalating with named transactions
   instead of just a gap figure (see the runbook).
 
+## For Day 04 — File Transfer Monitor
+- **Situation:** The daily settlement file is due by 07:00 — finance
+  reconciles against it and the downstream batch can't start without it.
+  At 07:30 it still hasn't arrived, and checking the morning's four files
+  by hand (transfer log, folder listing, timestamps, sizes) takes 15–20
+  minutes and can miss a zero-byte file that *looks* like it arrived.
+- **Action:** I wrote a Python tool that checks an expected-files manifest
+  against the morning's transfer log and the real drop folder, and writes a
+  one-page status report — OK / LATE / MISSING / EMPTY / SMALL per file —
+  with an overall status and an exit code (0/1/2) a scheduler can use.
+  It also flags files in the log but not on disk, and files that arrived
+  without being in the manifest.
+- **Result (in the scenario):** 🔴 ALERT — of 4 expected files only 1 is
+  OK. The critical settlement file is MISSING, the audit log arrived as a
+  zero-byte file (a failed transfer), and the FX rates file is 47 minutes
+  late. An unexpected promo-codes file also needs confirming with the
+  sender. Finance and the batch owners get the facts at 07:30 instead of
+  finding out at 09:00.
+- **What it shows:** Batch/settlement-file support, SLA awareness,
+  verifying on disk instead of trusting the log alone, and escalating
+  with named files and business impact instead of "the file is missing"
+  (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

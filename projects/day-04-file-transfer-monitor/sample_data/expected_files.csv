@@ -1,0 +1,5 @@
+filename,expected_by,source,min_size_bytes,critical,business_impact
+settlement_20261110.csv,07:00,Payment processor (SFTP),1000,yes,Daily settlement — finance reconciliation and the downstream batch are blocked without it
+customer_feed_20261110.csv,06:30,CRM nightly export,500,no,CRM sync for the day; stale customer data if late
+rates_20261110.csv,06:00,Rates service,200,no,FX rates used by billing calculations
+audit_log_20261110.csv,07:00,Application server,100,no,Overnight audit trail for compliance review
