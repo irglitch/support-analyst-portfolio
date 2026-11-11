@@ -72,6 +72,29 @@ handled: stuck transactions caused by a database connection failure."
   with named files and business impact instead of "the file is missing"
   (see the runbook).
 
+## For Day 05 — Incident SLA Tracker
+- **Situation:** At the 09:20 morning SLA review, ten incidents are open
+  and nobody has checked the clock. The duty manager asks which tickets
+  are breaching and which are about to — answering by hand means opening
+  every ticket, remembering each priority's SLA target, and doing the
+  arithmetic ten times over.
+- **Action:** I wrote a Python tool that reads the incident export (CSV),
+  works out each open ticket's resolution deadline from its priority's SLA
+  target (P1: 4h, P2: 8h, P3: 24h, P4: 48h), and writes a one-page report
+  sorted by deadline — BREACHED, AT RISK (under 2 hours or under 25% of
+  the target left), or ON TRACK — with exit codes (0/1/2) a scheduler can
+  page on. Resolved tickets are excluded; unknown priorities are flagged
+  for a manual check instead of crashing the run.
+- **Result (in the scenario):** 🔴 BREACH at 09:20 — 3 tickets already
+  breached (INC-1042 P1 checkout 500s, 50m over; INC-1050 P1 settlement
+  file rejected, 5m over; INC-1047 P3 report export timeout, 20m over)
+  and 2 at risk, the next breach INC-1043 (P2 CRM sync) in just 40
+  minutes. Five tickets are on track and one is resolved and excluded, so
+  the team chases 5 tickets instead of re-reading all 11.
+- **What it shows:** SLA tracking and breach prevention, incident
+  prioritisation, and escalating with a deadline and an owner instead of
+  "some tickets might be late" (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

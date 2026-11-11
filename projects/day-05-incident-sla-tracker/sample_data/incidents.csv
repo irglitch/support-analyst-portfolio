@@ -1,0 +1,12 @@
+ticket_id,summary,priority,status,assignee,created
+INC-1041,Payment gateway timeout on retry,P2,Resolved,Sam R,2026-11-10T22:15
+INC-1042,Checkout API returning 500s,P1,In Progress,Sam R,2026-11-11T04:30
+INC-1043,CRM sync stuck — new accounts not syncing,P2,In Progress,Priya K,2026-11-11T02:00
+INC-1044,Invoice PDF download fails for some customers,P3,Open,Ana M,2026-11-10T12:00
+INC-1045,Password reset email delayed,P2,Open,Sam R,2026-11-11T08:00
+INC-1046,Mobile app login errors after update,P1,In Progress,Priya K,2026-11-11T09:00
+INC-1047,Report export times out for large accounts,P3,Open,Ana M,2026-11-10T09:00
+INC-1048,Dashboard chart labels misaligned,P4,Open,Sam R,2026-11-10T14:00
+INC-1049,VPN drops for remote users,P2,In Progress,Priya K,2026-11-11T07:30
+INC-1050,Settlement file rejected by bank,P1,In Progress,Sam R,2026-11-11T05:15
+INC-1051,Search returns stale results,P3,Open,Ana M,2026-11-11T08:45
