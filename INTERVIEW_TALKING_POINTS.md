@@ -95,6 +95,34 @@ handled: stuck transactions caused by a database connection failure."
   prioritisation, and escalating with a deadline and an owner instead of
   "some tickets might be late" (see the runbook).
 
+## For Day 06 — Account Lockout Triage Tool
+- **Situation:** Thursday morning, 09:20, the helpdesk phone rings — "I
+  can't log in, it says my account is locked." The fix depends entirely
+  on why: a locked account, an expired password, a broken authenticator
+  and a disabled account all look the same to the caller, and guessing
+  wrong wastes the call — or creates a security problem.
+- **Action:** I wrote a Python tool that reads an account export and
+  the login-attempt log and checks the likely causes in order for every
+  user: disabled, locked, password expired, MFA failing after a correct
+  password, 5+ failures in the last hour, password expiring within 7
+  days, resolved (failure then success), or no attempts at all. It
+  writes a one-page triage report with the evidence and the next step
+  for each user, plus exit codes (0/1/2) a scheduler can act on. The
+  tool never unlocks or resets anything — it tells the analyst what to
+  do and who needs to do it.
+- **Result (in the scenario):** 🔴 ADMIN ACTION NEEDED at 09:20 — 2
+  users need the identity team: priya.k locked at 09:05 after 5 failed
+  logins, 3 from the Mobile mail app (stale saved password, password
+  itself valid until 2026-12-20), and chen.l disabled (do not
+  re-enable). 3 more are helpdesk-fixable: sam.r's password expired
+  yesterday, ana.m's password works but MFA failed 3 times in a row,
+  and jordan.p's password expires in 3 days. alex.d already got in
+  (typo) and mia.t has no login attempts at all — check the basics.
+- **What it shows:** First-line support triage, identity and access
+  basics (lockout vs expiry vs MFA vs disabled), verifying identity
+  before any unlock, and escalating with evidence instead of "user
+  can't log in" (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

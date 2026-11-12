@@ -1,0 +1,8 @@
+username,full_name,status,password_expiry,mfa_enabled,last_login
+priya.k,Priya Kapoor,locked,2026-12-20,yes,2026-11-11T17:40
+sam.r,Sam Reynolds,active,2026-11-11,yes,2026-11-10T16:05
+ana.m,Ana Martins,active,2026-12-15,yes,2026-11-11T18:22
+chen.l,Chen Li,disabled,2026-12-01,no,2026-10-30T09:12
+jordan.p,Jordan Patel,active,2026-11-15,yes,2026-11-12T08:30
+alex.d,Alex Dube,active,2026-12-28,no,2026-11-12T08:55
+mia.t,Mia Thompson,active,2026-12-10,yes,2026-11-11T12:00

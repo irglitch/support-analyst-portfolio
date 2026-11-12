@@ -9,7 +9,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 - [x] **Day 03 — SQL Reconciliation Break Finder** — totals mismatch between two systems (SQL + Python)
 - [x] **Day 04 — File Transfer Monitor** — missing 7 AM settlement file alert (Python)
 - [x] **Day 05 — Incident SLA Tracker** — spot SLA breaches before they happen (Python + CSV)
-- [ ] **Day 06 — Account Lockout Triage Tool** — locked-out user: check the likely causes in order (Python)
+- [x] **Day 06 — Account Lockout Triage Tool** — locked-out user: check the likely causes in order (Python)
 - [ ] **Day 07 — Error Code Knowledge Base** — searchable past-incident fixes (Python + JSON)
 
 ## Week 2 — Data, SQL & Batch

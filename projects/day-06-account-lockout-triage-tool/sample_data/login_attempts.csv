@@ -1,0 +1,16 @@
+timestamp,username,result,reason,source
+2026-11-12T08:52:11,priya.k,failure,bad password,Office laptop
+2026-11-12T08:53:02,priya.k,failure,bad password,Office laptop
+2026-11-12T08:54:40,priya.k,failure,bad password,Mobile mail app
+2026-11-12T08:58:15,priya.k,failure,bad password,Mobile mail app
+2026-11-12T09:01:33,priya.k,failure,bad password,Mobile mail app
+2026-11-12T09:05:47,priya.k,locked,account locked,Mobile mail app
+2026-11-12T08:40:00,sam.r,failure,password expired,Office laptop
+2026-11-12T08:41:20,sam.r,failure,password expired,Office laptop
+2026-11-12T09:02:00,ana.m,success,password ok,Office laptop
+2026-11-12T09:03:10,ana.m,failure,mfa failed,Office laptop
+2026-11-12T09:04:25,ana.m,failure,mfa failed,Office laptop
+2026-11-12T09:06:00,ana.m,failure,mfa failed,Office laptop
+2026-11-12T08:55:10,alex.d,failure,bad password,Office laptop
+2026-11-12T08:56:30,alex.d,success,password ok,Office laptop
+2026-11-12T09:10:00,jordan.p,success,password ok,Office laptop

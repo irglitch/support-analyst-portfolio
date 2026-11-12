@@ -42,7 +42,8 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | 03 | [SQL Reconciliation Break Finder](projects/day-03-sql-reconciliation-break-finder/) | Finance totals don't match — 4 named transactions explain a $64.23 gap, 13 of 16 match exactly | ✅ Done 2026-11-09 |
 | 04 | [File Transfer Monitor](projects/day-04-file-transfer-monitor/) | The 7 AM settlement file never arrived — detect it before the business does | ✅ Done 2026-11-10 |
 | 05 | [Incident SLA Tracker](projects/day-05-incident-sla-tracker/) | 09:20 SLA review: 3 tickets already breached, 2 more breach within hours — chase the right ones first | ✅ Done 2026-11-11 |
-| 06 | Account Lockout Triage Tool | Locked-out user: check the likely causes in order | ⏳ Scheduled |
+| 06 | [Account Lockout Triage Tool](projects/day-06-account-lockout-triage-tool/) | Locked-out user: priya.k locked by a stale phone password, sam.r expired, ana.m's MFA failing — check the causes in order | ✅ Done 2026-11-12 |
+| 07 | Error Code Knowledge Base | Searchable past-incident fixes | ⏳ Scheduled |
 
 Full 30-day plan: **[ROADMAP.md](ROADMAP.md)**
 
