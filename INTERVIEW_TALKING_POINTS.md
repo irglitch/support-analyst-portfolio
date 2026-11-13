@@ -123,6 +123,36 @@ handled: stuck transactions caused by a database connection failure."
   before any unlock, and escalating with evidence instead of "user
   can't log in" (see the runbook).
 
+## For Day 07 — Error Code Knowledge Base
+- **Situation:** Friday morning, 09:20, a user reports "checkout is
+  failing with a timeout again." The fix for this error almost
+  certainly exists in an old ticket — but nobody remembers the ticket
+  number, so the analyst starts the investigation from zero while the
+  checkout stays broken and the SLA clock runs.
+- **Action:** I built a small searchable knowledge base (JSON, so any
+  analyst can read and update it) of 12 past incidents — error code,
+  system, symptom, cause, the fix that worked last time, the original
+  ticket, and how many times the error has been seen. The Python tool
+  searches by error code or by a word from the symptom, ranking an
+  exact code match first, then a code substring, then keyword hits —
+  and within each rank the fix seen most often comes first. It also
+  lists entries by system and reports headline stats.
+- **Result (in the scenario):** Searching `timeout` returns 3 matches
+  in seconds. The top match is PAY-3002 — gateway timeout, seen 6
+  times (INC-1048): check the vendor status page first and retry with
+  back-off, never re-charge the customer twice. Next is DB-1045 —
+  checkout database connection timeout, seen 5 times (INC-1042):
+  the overnight batch held the connection pool open, so kill the idle
+  batch sessions and restart the pool — don't restart the app first.
+  Third is RPT-207 — monthly report timeout: add a date filter and
+  schedule it off-peak. The base holds 12 entries across 8 systems,
+  seen 44 times in total.
+- **What it shows:** Knowledge management and triage thinking — search
+  before you re-investigate, rank by what worked most often, verify
+  the hit against the evidence before applying it, and write the new
+  errors up after the fix so the next analyst finds them (see the
+  runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

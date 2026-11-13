@@ -10,7 +10,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 - [x] **Day 04 — File Transfer Monitor** — missing 7 AM settlement file alert (Python)
 - [x] **Day 05 — Incident SLA Tracker** — spot SLA breaches before they happen (Python + CSV)
 - [x] **Day 06 — Account Lockout Triage Tool** — locked-out user: check the likely causes in order (Python)
-- [ ] **Day 07 — Error Code Knowledge Base** — searchable past-incident fixes (Python + JSON)
+- [x] **Day 07 — Error Code Knowledge Base** — searchable past-incident fixes (Python + JSON)
 
 ## Week 2 — Data, SQL & Batch
 - [ ] **Day 08 — Duplicate Transaction Detector** (SQL)
