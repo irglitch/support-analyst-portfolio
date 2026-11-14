@@ -153,6 +153,31 @@ handled: stuck transactions caused by a database connection failure."
   errors up after the fix so the next analyst finds them (see the
   runbook).
 
+## For Day 08 — Duplicate Transaction Detector
+- **Situation:** Finance reports the daily total looks too high, and a
+  customer says they were charged twice for the same order. The extract
+  has 22 transactions totalling $2,845.50 — but the re-posted rows are
+  identical and the double-click pair has different transaction IDs, so
+  a simple "find the repeated ID" check misses half the problem.
+- **Action:** I loaded the extract into SQLite and ran duplicate-detection
+  queries — exact duplicates with GROUP BY / HAVING on the transaction
+  ID, and near duplicates with a self-join on customer + amount + day
+  within a 10-minute window, so a double-click or a retry that got a new
+  ID still shows up. Amounts are stored as integer cents so the totals
+  are exact. The tool writes a one-page report naming every duplicate
+  charge and the total amount at risk, and it also names the rows it
+  deliberately did not flag.
+- **Result (in the scenario):** 3 extra charges worth $208.73 — TXN-3001
+  re-posted ($129.99), TXN-3005 re-posted ($18.75), and TXN-3004 /
+  TXN-3010 charged twice 147 seconds apart (a double-click). The true
+  day's value is $2,636.77 across 19 genuine charges. The tool did not
+  flag TXN-3014 (same customer and amount, but 5 hours later — a
+  legitimate repeat) or TXN-3017 (same amount, different customer).
+- **What it shows:** SQL duplicate detection (GROUP BY / HAVING and
+  self-joins), data validation with a time window, exact money handling,
+  and escalating with named transactions and a refundable amount instead
+  of "the total looks wrong" (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

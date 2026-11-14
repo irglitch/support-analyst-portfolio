@@ -13,7 +13,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 - [x] **Day 07 — Error Code Knowledge Base** — searchable past-incident fixes (Python + JSON)
 
 ## Week 2 — Data, SQL & Batch
-- [ ] **Day 08 — Duplicate Transaction Detector** (SQL)
+- [x] **Day 08 — Duplicate Transaction Detector** (SQL)
 - [ ] **Day 09 — Database Lock / Slow Session Checker** (SQLite simulation)
 - [ ] **Day 10 — Pre-Batch Data Validation Checker** (Python + SQL)
 - [ ] **Day 11 — Reconciliation Summary Report Generator** (Python + CSV)
