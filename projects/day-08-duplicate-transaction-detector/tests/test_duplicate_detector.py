@@ -1,9 +1,13 @@
 """Tests for Day 08 — Duplicate Transaction Detector."""
 import csv
 import io
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+
+# Allow running from the repo root as well as from the project folder.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import duplicate_detector
 
