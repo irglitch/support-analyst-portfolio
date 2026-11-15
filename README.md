@@ -45,6 +45,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | 06 | [Account Lockout Triage Tool](projects/day-06-account-lockout-triage-tool/) | Locked-out user: priya.k locked by a stale phone password, sam.r expired, ana.m's MFA failing — check the causes in order | ✅ Done 2026-11-12 |
 | 07 | [Error Code Knowledge Base](projects/day-07-error-code-knowledge-base/) | Checkout timeout again — search the KB: PAY-3002 gateway timeout seen 6x, DB-1045 pool exhausted 5x — tried fix in seconds, not a fresh investigation | ✅ Done 2026-11-13 |
 | 08 | [Duplicate Transaction Detector](projects/day-08-duplicate-transaction-detector/) | Daily total looks too high and a customer was charged twice — 3 extra charges worth $208.73: two exact re-posts and one double-click 147 seconds apart | ✅ Done 2026-11-14 |
+| 09 | [Database Lock / Slow Session Checker](projects/day-09-database-lock-slow-session-checker/) | Checkouts hanging — the overnight settlement batch has held the transactions table for 42 minutes, blocking 3 sessions, and an idle-in-transaction checkout session blocks a 4th | ✅ Done 2026-11-15 |
 
 Full 30-day plan: **[ROADMAP.md](ROADMAP.md)**
 

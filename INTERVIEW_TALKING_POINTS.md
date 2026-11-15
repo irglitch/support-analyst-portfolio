@@ -178,6 +178,33 @@ handled: stuck transactions caused by a database connection failure."
   and escalating with named transactions and a refundable amount instead
   of "the total looks wrong" (see the runbook).
 
+## For Day 09 — Database Lock / Slow Session Checker
+- **Situation:** Users report the app is slow and checkouts are hanging —
+  payments sit "processing" and never complete. The app servers look
+  fine, so the next place to look is the database: is one session holding
+  a lock that everyone else is waiting on?
+- **Action:** I loaded a database session snapshot into SQLite and ran
+  lock-analysis queries — blocking chains with a self-join on the
+  blocking session, blocked sessions and their wait times, long-running
+  active sessions over 10 minutes, idle-in-transaction sessions holding
+  locks over 5 minutes, and a watch list for sessions in the 2–10 minute
+  window. The tool only reads and reports — it never kills a session,
+  because killing one rolls back real work and that call belongs to the
+  DBA team.
+- **Result (in the scenario):** 🔴 BLOCKING CHAIN in a 14-session
+  snapshot — the overnight settlement batch (SESS-101) has been updating
+  the transactions table for 42 minutes, blocking 3 sessions including a
+  payment insert waiting 10m 40s, and a checkout session (SESS-102)
+  updated an order 18 minutes ago then sat idle in its transaction,
+  blocking the shipment update. A reporting query running 12 minutes is
+  slow but blocks nobody, and two sessions sit on the watch list. The
+  tool did not flag the session idle for 2 hours — plain idle holds no
+  locks, so killing it would free nothing.
+- **What it shows:** Database lock and blocking analysis, session triage
+  (blocked vs blocker vs long-running vs idle), knowing what not to
+  kill, and escalating to the DBA team with named session IDs instead of
+  "the database is slow" (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

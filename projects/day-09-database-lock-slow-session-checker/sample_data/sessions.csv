@@ -1,0 +1,15 @@
+session_id,username,application,state,query,wait_event,duration_seconds,blocking_session_id
+SESS-101,batch-user,overnight-settlement,active,"UPDATE transactions SET status='settled' WHERE batch_id=8814",,2520,
+SESS-102,app-user,checkout-api,idle in transaction,"UPDATE orders SET status='paid' WHERE order_id=55231",,1080,
+SESS-103,report-user,reporting,active,"SELECT region, SUM(amount) FROM sales WHERE sale_date='2026-11-14' GROUP BY region",,720,
+SESS-104,app-user,checkout-api,blocked,"INSERT INTO payments (order_id, amount) VALUES (55231, 59.99)",row lock on transactions,640,SESS-101
+SESS-105,app-user,checkout-api,blocked,"UPDATE transactions SET status='paid' WHERE txn_id='TXN-3010'",row lock on transactions,610,SESS-101
+SESS-107,app-user,billing-api,blocked,"SELECT balance FROM transactions WHERE customer_id='CUST-104' FOR UPDATE",row lock on transactions,590,SESS-101
+SESS-108,app-user,checkout-api,blocked,"UPDATE orders SET status='shipped' WHERE order_id=55231",row lock on orders,540,SESS-102
+SESS-109,app-user,checkout-api,active,"SELECT name, price FROM products WHERE sku='SKU-7710'",,3,
+SESS-110,app-user,checkout-api,idle,,,7200,
+SESS-111,app-user,billing-api,active,"SELECT invoice_no FROM invoices WHERE customer_id='CUST-210'",,45,
+SESS-112,report-user,reporting,active,"SELECT * FROM audit_log WHERE event_date >= '2026-11-01'",,380,
+SESS-113,app-user,checkout-api,active,"INSERT INTO audit_log (event, user_id) VALUES ('login', 'U-1042')",,8,
+SESS-114,batch-user,overnight-settlement,active,"SELECT COUNT(*) FROM settlements WHERE batch_id=8814",,130,
+SESS-115,app-user,billing-api,idle in transaction,"SELECT * FROM invoices WHERE invoice_no='INV-9920'",,45,
