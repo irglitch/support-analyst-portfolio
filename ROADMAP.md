@@ -15,7 +15,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 ## Week 2 — Data, SQL & Batch
 - [x] **Day 08 — Duplicate Transaction Detector** (SQL)
 - [x] **Day 09 — Database Lock / Slow Session Checker** (SQLite simulation)
-- [ ] **Day 10 — Pre-Batch Data Validation Checker** (Python + SQL)
+- [x] **Day 10 — Pre-Batch Data Validation Checker** (Python + SQL)
 - [ ] **Day 11 — Reconciliation Summary Report Generator** (Python + CSV)
 - [ ] **Day 12 — Failed Batch Job Re-Run Checker** — is it safe to re-run? (Python)
 

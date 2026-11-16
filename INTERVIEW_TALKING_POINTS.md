@@ -205,6 +205,30 @@ handled: stuck transactions caused by a database connection failure."
   kill, and escalating to the DBA team with named session IDs instead of
   "the database is slow" (see the runbook).
 
+## For Day 10 — Pre-Batch Data Validation Checker
+- **Situation:** Monday, 09:20. The settlement batch is due to run at
+  10:00 and Finance has just dropped the staging file — 20 rows. A bad
+  row inside the batch means a failed run, a partial settlement and a
+  10 a.m. incident, so the file has to be validated before the batch
+  runs, not after it fails.
+- **Action:** I loaded the staging CSV into SQLite and ran nine checks —
+  duplicate transaction IDs, missing / negative / zero amounts,
+  unexpected currency, future dates, malformed account numbers, missing
+  customer IDs and invalid statuses. A row failing two rules still
+  counts once, so the blocked count always adds up to the file total.
+  The tool only reads and reports — it never edits the file or starts
+  the batch, because deleting a row would lose a payment.
+- **Result (in the scenario):** 🔴 BLOCKED — 10 of 20 rows fail, all 9
+  rules firing once each, including TXN-4100 appearing twice (which
+  would settle $129.99 twice) and a missing amount, a negative amount
+  and a future-dated row. The 10 clean rows total $1,390.59 and are
+  unaffected; the 10 bad rows go back to Finance by transaction ID,
+  and the batch runs only after a corrected file re-validates clean.
+- **What it shows:** Data validation before a batch run, SQL checks over
+  a staging table, exit-code gating for a scheduler, and reporting bad
+  rows by ID so the fixing team can act without a fresh investigation
+  (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
