@@ -229,6 +229,29 @@ handled: stuck transactions caused by a database connection failure."
   rows by ID so the fixing team can act without a fresh investigation
   (see the runbook).
 
+## For Day 11 — Reconciliation Summary Report Generator
+- **Situation:** After the overnight settlement batch runs, Finance
+  needs a daily reconciliation summary before the 10:00 close call —
+  do the source system and the ledger agree? Comparing two files by
+  hand is slow, and comparing only the totals hides the problem: a
+  $5.00 under-posting and a $120.00 extra posting nearly cancel out.
+- **Action:** I wrote a Python tool that matches both settlement
+  files on transaction ID and classifies every transaction — matched
+  exactly, amount mismatch, missing in ledger, missing in source —
+  then totals each file with exact decimal arithmetic and writes a
+  one-page summary with a verdict Finance can act on. It only reads
+  and reports; fixing a break is Finance's call.
+- **Result (in the scenario):** ⚠️ BREAKS FOUND — 16 of 19
+  transactions match exactly, but 3 breaks worth $214.99 hide behind
+  a net difference of only $25.01: TXN-5203 posted $5.00 short,
+  TXN-5207 ($89.99) never reached the ledger, and TXN-5210 ($120.00)
+  sits in the ledger with no source record. The day doesn't close
+  until Finance clears all three by transaction ID.
+- **What it shows:** Reconciliation thinking, not just totals —
+  matching on IDs, classifying break types, exact decimal money
+  maths, and reporting breaks so the fixing team can act without a
+  fresh investigation (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

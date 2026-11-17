@@ -47,6 +47,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | 08 | [Duplicate Transaction Detector](projects/day-08-duplicate-transaction-detector/) | Daily total looks too high and a customer was charged twice — 3 extra charges worth $208.73: two exact re-posts and one double-click 147 seconds apart | ✅ Done 2026-11-14 |
 | 09 | [Database Lock / Slow Session Checker](projects/day-09-database-lock-slow-session-checker/) | Checkouts hanging — the overnight settlement batch has held the transactions table for 42 minutes, blocking 3 sessions, and an idle-in-transaction checkout session blocks a 4th | ✅ Done 2026-11-15 |
 | 10 | [Pre-Batch Data Validation Checker](projects/day-10-pre-batch-data-validation-checker/) | Settlement batch due at 10:00 — 10 of 20 staging rows fail validation (a duplicate that would settle $129.99 twice, a missing amount, a negative amount), so the batch is held | ✅ Done 2026-11-16 |
+| 11 | [Reconciliation Summary Report Generator](projects/day-11-reconciliation-summary-report-generator/) | Daily close: 16 of 19 settlements match exactly, but 3 breaks worth $214.99 hide behind a net difference of only $25.01 — the day can't close until Finance clears them | ✅ Done 2026-11-17 |
 
 Full 30-day plan: **[ROADMAP.md](ROADMAP.md)**
 
