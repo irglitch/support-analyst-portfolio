@@ -17,7 +17,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 - [x] **Day 09 — Database Lock / Slow Session Checker** (SQLite simulation)
 - [x] **Day 10 — Pre-Batch Data Validation Checker** (Python + SQL)
 - [x] **Day 11 — Reconciliation Summary Report Generator** (Python + CSV)
-- [ ] **Day 12 — Failed Batch Job Re-Run Checker** — is it safe to re-run? (Python)
+- [x] **Day 12 — Failed Batch Job Re-Run Checker** — is it safe to re-run? (Python)
 
 ## Week 3 — Monitoring & Automation
 - [ ] **Day 13 — Service Health / Uptime Checker** (Python)

@@ -1,0 +1,10 @@
+2026-11-17 02:00:01 INFO  SETTLE_NIGHTLY run 2026-11-17-0200 started — 1200 rows to process
+2026-11-17 02:00:04 INFO  Input file settlements_2026-11-17.csv loaded (checksum OK)
+2026-11-17 02:00:06 INFO  Database connection opened (pool: 5 connections)
+2026-11-17 02:12:33 INFO  Processed 200/1200 rows
+2026-11-17 02:24:10 INFO  Processed 400/1200 rows
+2026-11-17 02:38:45 INFO  Processed 600/1200 rows
+2026-11-17 02:47:09 ERROR DB connection timeout after 30s — retry 1 of 3 failed
+2026-11-17 02:47:10 ERROR DB connection timeout after 30s — retry 2 of 3 failed
+2026-11-17 02:47:12 ERROR DB connection timeout after 30s — retry 3 of 3 failed
+2026-11-17 02:47:12 FATAL Job aborted — exit code 3 — 642/1200 rows posted, 558 rows unprocessed

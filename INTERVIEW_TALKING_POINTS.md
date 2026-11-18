@@ -252,6 +252,33 @@ handled: stuck transactions caused by a database connection failure."
   maths, and reporting breaks so the fixing team can act without a
   fresh investigation (see the runbook).
 
+## For Day 12 — Failed Batch Job Re-Run Checker
+- **Situation:** The overnight settlement batch failed at 02:47,
+  642 of 1,200 rows in, and Operations wants to re-run it before
+  the business day starts. A blind re-run would post the 642 rows
+  already settled a second time — and the job might still be
+  running, have failed on a bad data row, or have a downstream job
+  that already consumed the partial output.
+- **Action:** I wrote a Python tool that runs six safety checks
+  before anyone presses the button — previous run status, lock,
+  failure cause classified from the log (transient vs data vs
+  config), partial progress in rows and dollars, downstream jobs,
+  and the input file's presence and checksum — then gives a
+  verdict: safe to re-run (full or resume-and-skip), wait, or do
+  not re-run with every blocker listed. It only reads and reports;
+  it never re-runs the job or clears a lock.
+- **Result (in the scenario):** 🟢 SAFE TO RE-RUN — resume, do not
+  restart. The failure was a transient DB timeout, no lock is
+  held, all three downstream jobs are still pending, and the input
+  file is unchanged. The re-run starts from row 643 and skips the
+  642 rows already posted (worth $156,594.61); afterwards 642 +
+  558 must equal 1,200 with no transaction posted twice.
+- **What it shows:** Batch operations judgement — checking
+  re-run safety before the button press, classifying failure
+  causes from logs, quantifying double-posting risk in dollars,
+  and exit-code gating so a scheduler can block an unsafe re-run
+  (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
