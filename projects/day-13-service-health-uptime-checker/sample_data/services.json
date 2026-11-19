@@ -1,0 +1,54 @@
+{
+    "checked_by": "application support \u2014 morning BAU health check",
+    "services": [
+        {
+            "critical": true,
+            "expected_status": 200,
+            "max_latency_ms": 500,
+            "name": "payment-api",
+            "uptime_sla_percent": 99.5,
+            "url": "https://internal.example.local/payment-api/health"
+        },
+        {
+            "critical": true,
+            "expected_status": 200,
+            "max_latency_ms": 500,
+            "name": "customer-portal",
+            "uptime_sla_percent": 99.5,
+            "url": "https://internal.example.local/portal/health"
+        },
+        {
+            "critical": true,
+            "expected_status": 200,
+            "max_latency_ms": 800,
+            "name": "settlement-service",
+            "uptime_sla_percent": 99.5,
+            "url": "https://internal.example.local/settlement/health"
+        },
+        {
+            "critical": true,
+            "expected_status": 200,
+            "max_latency_ms": 500,
+            "name": "crm-sync",
+            "uptime_sla_percent": 99.5,
+            "url": "https://internal.example.local/crm-sync/health"
+        },
+        {
+            "critical": false,
+            "expected_status": 200,
+            "max_latency_ms": 500,
+            "name": "file-gateway",
+            "uptime_sla_percent": 99.0,
+            "url": "https://internal.example.local/file-gateway/health"
+        },
+        {
+            "critical": false,
+            "expected_status": 200,
+            "max_latency_ms": 500,
+            "name": "notification-service",
+            "uptime_sla_percent": 99.0,
+            "url": "https://internal.example.local/notifications/health"
+        }
+    ],
+    "window_hours": 24
+}

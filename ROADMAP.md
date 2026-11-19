@@ -20,7 +20,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 - [x] **Day 12 — Failed Batch Job Re-Run Checker** — is it safe to re-run? (Python)
 
 ## Week 3 — Monitoring & Automation
-- [ ] **Day 13 — Service Health / Uptime Checker** (Python)
+- [x] **Day 13 — Service Health / Uptime Checker** (Python)
 - [ ] **Day 14 — Disk Space Early-Warning Script** (Bash)
 - [ ] **Day 15 — Certificate Expiry Checker** (Python)
 - [ ] **Day 16 — Log Rotation & Cleanup Automation** (Bash)

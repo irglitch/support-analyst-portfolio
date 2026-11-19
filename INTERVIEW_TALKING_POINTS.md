@@ -279,6 +279,37 @@ handled: stuck transactions caused by a database connection failure."
   and exit-code gating so a scheduler can block an unsafe re-run
   (see the runbook).
 
+## For Day 13 — Service Health / Uptime Checker
+- **Situation:** At the 09:20 morning health check, users started
+  reporting stale data in the CRM — and nobody had looked at the
+  probe log yet. "The CRM feels slow" could be a dead service, a
+  slow dependency, or nothing at all, and guessing wrong means
+  either escalating a non-incident or ignoring a real outage.
+- **Action:** I wrote a Python tool that reads the service
+  inventory (URL, expected status, latency threshold, uptime SLA,
+  critical or not) and the last 24 hours of probe results — 1,728
+  rows, one probe every 5 minutes per service — then reports
+  per-service status (up, degraded, down, or unknown), uptime
+  against SLA, average and p95 latency against threshold, and the
+  outage detail: when the current failure run started, how long it
+  has lasted, and the last error. It only reads and reports; it
+  never restarts a service.
+- **Result (in the scenario):** 🔴 CRITICAL — a critical service is
+  DOWN. `crm-sync` failed 6 consecutive probes since 08:55 (25
+  minutes, last error "Connection refused"), uptime 97.92% against
+  a 99.5% SLA — the outage started 5 minutes before the first user
+  call. `settlement-service` is DEGRADED: 100% uptime but averaging
+  1,279 ms against an 800 ms threshold, so settlements run slow
+  with nothing actually failed. The other four services are UP,
+  including `payment-api`, which survived a single 03:20 timeout
+  blip inside SLA.
+- **What it shows:** Service monitoring and uptime reporting —
+  separating down from degraded from healthy, reading latency
+  (average and p95) as a health signal, not just up/down, and
+  escalating with the outage start time, failure count, and last
+  error so the platform team can act in 30 seconds (see the
+  runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
