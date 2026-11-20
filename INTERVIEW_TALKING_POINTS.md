@@ -310,6 +310,35 @@ handled: stuck transactions caused by a database connection failure."
   error so the platform team can act in 30 seconds (see the
   runbook).
 
+## For Day 14 — Disk Space Early-Warning Script
+- **Situation:** At the 07:40 morning check, the overnight
+  settlement batch had pushed `/var` to 88% — up from 64% at 8 PM
+  the night before — and the archives mount `/data` was sitting at
+  96%. A plain `df` says how full a disk is; it does not say how
+  long you have before the batch can't write and the payment
+  service stalls.
+- **Action:** I wrote a Bash script that checks every filesystem
+  against WARN (80%) / FAIL (90%) thresholds, works out the growth
+  rate from an hourly usage history and the estimated hours until
+  full, checks inode usage at the same thresholds, and lists the
+  largest directories on any mount over threshold — flagging
+  anything 10G and above to investigate first. It only reads and
+  reports; it never deletes anything, because clearing space is a
+  human decision. It exits 0/1/2 so a scheduler can alert on it.
+- **Result (in the scenario):** 🔴 FAIL — a filesystem needs action
+  now. `/data` is at 96% (480G of 500G, 20G free) with inodes at
+  90%, both FAIL. `/var` is at 88% and growing at +2.06%/h, so it
+  fills in ~5.8 hours — around 13:30 if nothing is cleared. The
+  largest directory is `/data/archives/settlements-2025` (120G),
+  and the fastest-growing is `/var/log/payment-api` (28G) — most
+  likely logs with no rotation. The healthy snapshot passes clean
+  (exit 0, `/var` at 58% with ~163 hours to full).
+- **What it shows:** Linux disk monitoring beyond `df` — capacity
+  planning and growth forecasting, inode pressure as a separate
+  failure mode, and escalating with a deadline ("fills by 13:30")
+  instead of just a percentage, so the team acts before the outage
+  (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

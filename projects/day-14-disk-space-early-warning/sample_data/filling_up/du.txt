@@ -1,0 +1,5 @@
+120G	/data/archives/settlements-2025
+90G	/data/archives/settlements-2024
+28G	/var/log/payment-api
+18G	/var/lib/postgresql
+6G	/var/log/nginx

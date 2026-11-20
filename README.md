@@ -50,6 +50,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | 11 | [Reconciliation Summary Report Generator](projects/day-11-reconciliation-summary-report-generator/) | Daily close: 16 of 19 settlements match exactly, but 3 breaks worth $214.99 hide behind a net difference of only $25.01 — the day can't close until Finance clears them | ✅ Done 2026-11-17 |
 | 12 | [Failed Batch Job Re-Run Checker](projects/day-12-failed-batch-job-rerun-checker/) | Overnight batch failed 642 of 1,200 rows in — safe to re-run as a resume from row 643, because a full re-run would double-post $156,594.61 | ✅ Done 2026-11-18 |
 | 13 | [Service Health / Uptime Checker](projects/day-13-service-health-uptime-checker/) | Morning health check: crm-sync down since 08:55 (6 failed probes, "Connection refused") and settlement-service degraded at 1,279 ms avg latency — the stale-CRM reports are real | ✅ Done 2026-11-19 |
+| 14 | [Disk Space Early-Warning Script](projects/day-14-disk-space-early-warning/) | Morning disk check: /data at 96% FAIL and /var at 88% filling in ~5.8 hours at +2.06%/h — the batch stops before lunch if nothing is cleared | ✅ Done 2026-11-20 |
 
 Full 30-day plan: **[ROADMAP.md](ROADMAP.md)**
 

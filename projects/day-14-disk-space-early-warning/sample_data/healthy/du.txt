@@ -1,0 +1,5 @@
+4G	/var/log/payment-api
+2G	/var/lib/postgresql
+1G	/var/log/nginx
+500M	/var/backups
+200M	/var/cache/apt
