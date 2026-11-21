@@ -339,6 +339,33 @@ handled: stuck transactions caused by a database connection failure."
   instead of just a percentage, so the team acts before the outage
   (see the runbook).
 
+## For Day 15 — Certificate Expiry Checker
+- **Situation:** On the Saturday morning check before a weekend on-call
+  rota, the certificate inventory showed the settlement file-transfer
+  certificate had already expired two days earlier, and the Payment
+  Gateway API certificate was due to expire on the Monday — a
+  certificate that lapses unnoticed takes a service down with no
+  warning, and a Monday expiry is a weekend job, not a Monday job.
+- **Action:** I wrote a Python tool (standard library only) that reads
+  the certificate inventory CSV, works out the days remaining for every
+  certificate against WARN (30 days) / CRITICAL (14 days) thresholds,
+  sorts the report worst-first with the owning team named, and exits
+  0/1/2 so a scheduler can alert on it. It also has an optional
+  `--host` mode that checks a live host's real certificate with the
+  `ssl` module, and an `--as-of` date so a report can be reproduced.
+- **Result (in the scenario):** 🔴 EXPIRED — 7 certificates checked: 1
+  expired, 1 critical, 2 warning, 3 OK. The settlement SFTP
+  certificate (`sftp.partnerbank.example.com`) expired 2026-11-19, two
+  days ago — that is the incident to raise first. The Payment Gateway
+  API certificate expires in 2 days, on Monday 2026-11-23, so it must
+  be renewed before the weekend is over. SSO (19 days) and the Customer
+  Portal (24 days) need renewal tickets raised now. Exit code 2.
+- **What it shows:** TLS/certificate lifecycle awareness — preventive
+  monitoring instead of reacting to an outage, threshold and alert
+  design with scheduler-friendly exit codes, and escalating with a
+  named owner and a deadline ("expires Monday") instead of just a
+  date, so the team acts before the break (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

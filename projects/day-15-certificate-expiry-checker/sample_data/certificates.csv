@@ -1,0 +1,8 @@
+hostname,service,environment,issuer,expiry_date,owner
+sftp.partnerbank.example.com,Settlement file transfer (SFTP),Production,Example Commercial CA,2026-11-19,Platform team
+api.payments.example.com,Payment Gateway API,Production,Example Commercial CA,2026-11-23,Payments team
+sso.internal.example.com,Single Sign-On,Production,Internal CA,2026-12-10,Identity team
+portal.customer.example.com,Customer Portal,Production,Example Commercial CA,2026-12-15,Web team
+vpn.internal.example.com,VPN Gateway,Production,Internal CA,2027-01-30,Network team
+wiki.internal.example.com,Internal Wiki,Internal,Internal CA,2027-03-02,IT support
+smtp.relay.example.com,Email Relay,Production,Example Commercial CA,2027-05-18,Platform team
