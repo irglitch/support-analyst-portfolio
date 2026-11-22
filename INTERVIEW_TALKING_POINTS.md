@@ -366,6 +366,41 @@ handled: stuck transactions caused by a database connection failure."
   named owner and a deadline ("expires Monday") instead of just a
   date, so the team acts before the break (see the runbook).
 
+## For Day 16 — Log Rotation & Cleanup Automation
+- **Situation:** On the Sunday morning check, the disk report from two
+  days earlier was still open: `/var/log/payment-api` held 28G of
+  logs with no rotation, and the duty manager wanted the permanent
+  fix, not another manual delete — rotation and cleanup automated,
+  with a retention policy, and safe enough to schedule. A cleanup
+  script that deletes the wrong file is worse than a full disk, because
+  it destroys the evidence an investigation needs.
+- **Action:** I wrote a Bash tool (standard tools only) that scans a
+  log directory — or a captured inventory of one — and applies a
+  retention policy: plain logs older than 30 days get compressed,
+  `.gz` archives older than 90 days get deleted, anything inside its
+  window is kept. It is dry-run by default, so nothing changes unless
+  `--apply` is passed; a file modified in the last 60 minutes is
+  treated as active and never rotated, even with `--retention-days 0`;
+  only `.log` files are ever acted on; `--dir /` is refused; and
+  `--apply` with a captured inventory is refused because the files
+  listed may not exist. Exit codes are 0/1/2 so a scheduler can alert
+  on cleanup pending.
+- **Result (in the scenario):** 🟡 DRY-RUN — cleanup pending, exit 1.
+  14 files scanned, 36.57 GB in total: 4 logs to compress (24.20 GB,
+  an estimated 20.57 GB freed) and 2 archives to delete (4.80 GB) —
+  25.37 GB recoverable, taking `/var/log` from 36.57 GB to ~11.20 GB.
+  The currently-written `crm-sync/sync.log` was skipped as active and
+  a README file was skipped as not a log. I verified the same
+  behaviour on real files in the sample tree, and the 8-test suite
+  proves the safety rules: a live dry-run changes nothing byte-for-byte,
+  a live `--apply` really compresses and deletes and the re-run then
+  passes clean, and the active guard holds even at retention 0.
+- **What it shows:** safe automation thinking — dry-run by default,
+  an active-file guard, and refusing dangerous input are the design,
+  not an afterthought; retention-policy judgement (compress vs delete
+  windows); and closing the loop on an earlier finding instead of
+  letting the same disk incident repeat (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

@@ -52,6 +52,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | 13 | [Service Health / Uptime Checker](projects/day-13-service-health-uptime-checker/) | Morning health check: crm-sync down since 08:55 (6 failed probes, "Connection refused") and settlement-service degraded at 1,279 ms avg latency — the stale-CRM reports are real | ✅ Done 2026-11-19 |
 | 14 | [Disk Space Early-Warning Script](projects/day-14-disk-space-early-warning/) | Morning disk check: /data at 96% FAIL and /var at 88% filling in ~5.8 hours at +2.06%/h — the batch stops before lunch if nothing is cleared | ✅ Done 2026-11-20 |
 | 15 | [Certificate Expiry Checker](projects/day-15-certificate-expiry-checker/) | Weekend check: the settlement SFTP certificate expired 2 days ago and the payment gateway certificate expires Monday — renew before the weekend is over | ✅ Done 2026-11-21 |
+| 16 | [Log Rotation & Cleanup Automation](projects/day-16-log-rotation-cleanup/) | Day 14 flagged /var/log/payment-api at 28G of unrotated logs — 4 files to compress, 2 archives to delete, ~25.37 GB recoverable, active log left alone | ✅ Done 2026-11-22 |
 
 Full 30-day plan: **[ROADMAP.md](ROADMAP.md)**
 
