@@ -1,0 +1,7 @@
+ticket,priority,summary,opened,status,owner
+INC-2011,P1,Checkout 500 errors,2026-11-23 04:45,open,duty-manager
+INC-2014,P2,CRM sync stale data,2026-11-23 01:50,open,platform-team
+INC-2015,P3,Report export slow,2026-11-23 08:00,open,support-team
+INC-2016,P2,Settlement file late,2026-11-23 06:15,open,ops-team
+INC-2017,P4,Dashboard typo,2026-11-23 08:30,open,support-team
+INC-2010,P2,Login page slow,2026-11-22 14:00,resolved,support-team

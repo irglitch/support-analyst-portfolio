@@ -1,0 +1,5 @@
+hostname,service,expiry_date,owner
+api.payment-gateway.example.com,Payment Gateway API,2026-11-23,platform-team
+sso.example.com,SSO,2026-12-12,identity-team
+portal.example.com,Customer Portal,2026-12-17,web-team
+ca.internal.example.com,Internal CA,2027-06-01,platform-team

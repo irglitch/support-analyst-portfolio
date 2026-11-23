@@ -1,0 +1,7 @@
+service,status,url,latency_ms,latency_threshold_ms,uptime_pct,uptime_sla_pct,failed_probes,last_error,down_since
+payment-api,UP,https://api.example.com/health,214,500,99.98,99.9,0,,
+crm-sync,UP,https://crm.example.com/health,388,800,99.62,99.5,0,,
+settlement-service,DEGRADED,https://settle.example.com/health,1180,800,100.00,99.9,0,,
+sftp-gateway,UP,https://sftp.example.com/health,96,500,99.99,99.9,0,,
+reporting-service,UP,https://reports.example.com/health,640,1000,99.87,99.5,0,,
+notification-service,DOWN,https://notify.example.com/health,,500,99.41,99.5,3,Connection refused,2026-11-23 09:02

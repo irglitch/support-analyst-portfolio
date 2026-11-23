@@ -1,0 +1,4 @@
+mount,total_gb,used_pct,inodes_pct,growth_pct_per_hour
+/data,500,91,90,1.4
+/var,600,84,71,0.8
+/,100,62,55,0.1

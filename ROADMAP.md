@@ -24,7 +24,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 - [x] **Day 14 — Disk Space Early-Warning Script** (Bash)
 - [x] **Day 15 — Certificate Expiry Checker** (Python)
 - [x] **Day 16 — Log Rotation & Cleanup Automation** (Bash)
-- [ ] **Day 17 — Daily BAU Health-Check Report** (Python + Bash)
+- [x] **Day 17 — Daily BAU Health-Check Report** (Python + Bash)
 
 ## Week 4 — Support Operations
 - [ ] **Day 18 — RCA Document Generator** (Python + Markdown template)

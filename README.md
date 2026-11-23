@@ -53,6 +53,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | 14 | [Disk Space Early-Warning Script](projects/day-14-disk-space-early-warning/) | Morning disk check: /data at 96% FAIL and /var at 88% filling in ~5.8 hours at +2.06%/h — the batch stops before lunch if nothing is cleared | ✅ Done 2026-11-20 |
 | 15 | [Certificate Expiry Checker](projects/day-15-certificate-expiry-checker/) | Weekend check: the settlement SFTP certificate expired 2 days ago and the payment gateway certificate expires Monday — renew before the weekend is over | ✅ Done 2026-11-21 |
 | 16 | [Log Rotation & Cleanup Automation](projects/day-16-log-rotation-cleanup/) | Day 14 flagged /var/log/payment-api at 28G of unrotated logs — 4 files to compress, 2 archives to delete, ~25.37 GB recoverable, active log left alone | ✅ Done 2026-11-22 |
+| 17 | [Daily BAU Health-Check Report](projects/day-17-daily-bau-health-check-report/) | Monday 09:20 check is RED — notification-service down since 09:02, settlement file missing, gateway certificate expires today, P1 breached 35m over, /data fills ~15:45 | ✅ Done 2026-11-23 |
 
 Full 30-day plan: **[ROADMAP.md](ROADMAP.md)**
 

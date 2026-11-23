@@ -1,0 +1,5 @@
+filename,expected_by,arrived_at,status,size_bytes,expected_min_bytes,sender
+settlement-20261123.csv,2026-11-23 07:00,,MISSING,0,1000,partner-bank
+fx-rates-20261123.csv,2026-11-23 07:00,2026-11-23 07:25,LATE,48210,10000,fx-vendor
+audit-log-20261123.csv,2026-11-23 07:00,2026-11-23 06:58,OK,120400,10000,partner-bank
+promo-codes-20261123.csv,2026-11-23 07:00,2026-11-23 06:41,OK,8420,1000,marketing

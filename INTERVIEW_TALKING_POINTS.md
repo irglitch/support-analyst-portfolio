@@ -401,6 +401,38 @@ handled: stuck transactions caused by a database connection failure."
   windows); and closing the loop on an earlier finding instead of
   letting the same disk incident repeat (see the runbook).
 
+## For Day 17 — Daily BAU Health-Check Report
+- **Situation:** Monday, 09:20, the duty manager asks "is everything
+  OK this morning?" — and the answer lives in five different places:
+  the service probes, the disk report, the incident queue, the
+  file-transfer manifest and the certificate inventory. Answering by
+  hand means opening five tools and stitching the picture together
+  while the 10:00 batch and the SLA clock both run.
+- **Action:** I wrote a Python tool that reads one snapshot of each
+  of the five areas and writes a single one-page BAU report — an
+  overall verdict (GREEN / AMBER / RED) with a scheduler-friendly
+  exit code, a status per area, and a ranked action list (worst
+  first, then by deadline), with the detail tables underneath so any
+  action can be verified before escalating. A Bash wrapper is the
+  daily entry point and can also collect a live snapshot on a Linux
+  host (`df` for disks, `systemctl`/`pgrep` for services); values a
+  live check cannot measure are shown as "—", never invented.
+- **Result (in the scenario):** 🔴 RED at 09:20 — all five areas
+  critical at once, and the ranked list says why before anyone reads
+  five tools: notification-service DOWN since 09:02 (3 failed
+  probes, "Connection refused"), the settlement file missing since
+  07:00, the Payment Gateway certificate expiring today (flagged on
+  Day 15), INC-2011 (P1) breached 35 minutes over SLA, and /data at
+  91% filling around 15:45. Below the criticals: settlement-service
+  degraded at 1180 ms, INC-2014 breaches in 30 minutes, and the SSO
+  and portal certificates need renewal tickets. The clean areas are
+  reported too — crm-sync recovered, payment-api healthy, 3 of 5
+  tickets on track — so nobody re-investigates what is fine.
+- **What it shows:** Morning BAU reporting — combining several
+  monitoring sources into one verdict and one ranked list, triage
+  thinking (worst first, deadline next), and escalating with the
+  business impact and the deadline attached (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
