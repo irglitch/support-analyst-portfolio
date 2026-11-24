@@ -433,6 +433,40 @@ handled: stuck transactions caused by a database connection failure."
   thinking (worst first, deadline next), and escalating with the
   business impact and the deadline attached (see the runbook).
 
+## For Day 18 — RCA Document Generator
+- **Situation:** The morning after the outage — INC-2011 (P1, checkout
+  returning HTTP 500s, Monday 09:02–10:47) is resolved, and the duty
+  manager needs the root-cause analysis for the business review
+  tomorrow. Writing it by hand means copying the timeline out of the
+  ticket, re-typing impact numbers from three places, and hoping
+  nothing is missed — a review that finds a hole sends the whole
+  document back.
+- **Action:** I wrote a Python tool that reads one incident file
+  (JSON) and writes a structured RCA from a Markdown template:
+  executive summary, impact, timeline with elapsed time since
+  detection, root cause, a 5-whys chain, what went well and badly,
+  action items with owners and due dates, evidence, and follow-up.
+  The key feature is a completeness check — a P1 RCA is not stamped
+  FINAL until every required section is present, so an incomplete RCA
+  can never reach the business by accident; anything missing stamps
+  it DRAFT with a checklist and a non-zero exit code. The timeline
+  and evidence reuse the earlier days' tools (log triage, health
+  probes, duplicate-transaction check).
+- **Result (in the scenario):** FINAL — INC-2011, 1h 45m, 1,240 failed
+  checkouts, ~1,850 customers, ~$38,450 interrupted. Root cause:
+  CHG-8841 cut the database connection pool 200 → 50 with no load
+  test against Monday peak traffic; the 5-whys chain ends at the
+  process gap — no mandatory load check for connection-limit changes.
+  Honest misses are in the document too: the P1 breached its
+  60-minute SLA by 45 minutes and there was no pool-exhaustion
+  runbook. Verified before closure: 0 double-charges. Four action
+  items with owners and due dates, earliest 2026-11-26.
+- **What it shows:** Root-cause analysis and 5-whys thinking,
+  timeline reconstruction from logs and change records, impact
+  quantification, and the discipline of a document that cannot go out
+  incomplete — plus the support process around it (verify the numbers,
+  present the timeline, track the actions to closure).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.

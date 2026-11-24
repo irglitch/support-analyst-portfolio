@@ -27,7 +27,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 - [x] **Day 17 — Daily BAU Health-Check Report** (Python + Bash)
 
 ## Week 4 — Support Operations
-- [ ] **Day 18 — RCA Document Generator** (Python + Markdown template)
+- [x] **Day 18 — RCA Document Generator** (Python + Markdown template)
 - [ ] **Day 19 — Change Request Readiness Checker** (Python)
 - [ ] **Day 20 — Deployment Verification Checker** (Python)
 - [ ] **Day 21 — Ticket Categorisation Helper** (Python)
