@@ -28,7 +28,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 
 ## Week 4 — Support Operations
 - [x] **Day 18 — RCA Document Generator** (Python + Markdown template)
-- [ ] **Day 19 — Change Request Readiness Checker** (Python)
+- [x] **Day 19 — Change Request Readiness Checker** (Python)
 - [ ] **Day 20 — Deployment Verification Checker** (Python)
 - [ ] **Day 21 — Ticket Categorisation Helper** (Python)
 - [ ] **Day 22 — SLA Breach Early Warning** (Python)

@@ -55,6 +55,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | 16 | [Log Rotation & Cleanup Automation](projects/day-16-log-rotation-cleanup/) | Day 14 flagged /var/log/payment-api at 28G of unrotated logs — 4 files to compress, 2 archives to delete, ~25.37 GB recoverable, active log left alone | ✅ Done 2026-11-22 |
 | 17 | [Daily BAU Health-Check Report](projects/day-17-daily-bau-health-check-report/) | Monday 09:20 check is RED — notification-service down since 09:02, settlement file missing, gateway certificate expires today, P1 breached 35m over, /data fills ~15:45 | ✅ Done 2026-11-23 |
 | 18 | [RCA Document Generator](projects/day-18-rca-document-generator/) | INC-2011 P1 checkout 500s (1h 45m, 1,240 failed checkouts, ~$38,450 interrupted) — CHG-8841 cut the connection pool 200 → 50 with no load test; RCA generated FINAL with 5 whys, timeline and 4 owned action items, 0 double-charges verified | ✅ Done 2026-11-24 |
+| 19 | [Change Request Readiness Checker](projects/day-19-change-request-readiness-checker/) | Pre-CAB review of 5 changes — 2 blocked (a "TBD" rollback trigger with approval outstanding, and 70m of work in a 60m window) while the high-risk pool fix is ready, load tested at 1.5× Monday peak | ✅ Done 2026-11-25 |
 
 Full 30-day plan: **[ROADMAP.md](ROADMAP.md)**
 

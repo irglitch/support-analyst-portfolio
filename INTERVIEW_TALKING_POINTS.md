@@ -467,6 +467,38 @@ handled: stuck transactions caused by a database connection failure."
   incomplete — plus the support process around it (verify the numbers,
   present the timeline, track the actions to closure).
 
+## For Day 19 — Change Request Readiness Checker
+- **Situation:** The day before CAB, five change requests need a
+  readiness review — and the fresh lesson from Day 18's RCA is that
+  CHG-8841 caused a P1 because it had no load test and no rollback
+  trigger. Reviewing five tickets by hand is exactly how a "TBD"
+  trigger gets skimmed past.
+- **Action:** I wrote a Python tool that runs the readiness checks
+  support applies before approval — description, risk and impact;
+  test evidence, including a load-test rule for high-risk and
+  limit-changing changes; a rollback plan with a real trigger and
+  window maths (implementation + rollback must fit the scheduled
+  window); approvals with separation of duties and CAB approval for
+  high risk; communications, dependencies, peer review and
+  verification steps. Each change gets READY, READY WITH CONDITIONS
+  or NOT READY, with a ranked action list for CAB and exit codes a
+  scheduler can gate on. It only reads and reports — CAB still makes
+  the decision.
+- **Result (in the scenario):** 🔴 NOT READY — 2 of 5 changes
+  blocked. CHG-8902 (settlement deploy) has a "TBD" rollback trigger
+  and an outstanding service-owner approval; CHG-8904 (reporting
+  index) needs 70 minutes of work in a 60-minute window, so there
+  would be no time to back out. CHG-8903 is ready with conditions
+  (notice unsent, no peer review). The high-risk change, CHG-8901 —
+  the connection-pool fix from the INC-2011 RCA — is READY: load
+  tested at 1.5× Monday peak, trigger defined, CAB approved. The
+  low-risk standard certificate renewal is correctly not flagged for
+  load-test or CAB evidence it doesn't need.
+- **What it shows:** Change management and CAB readiness — turning
+  an RCA action item into a preventive control, blocker-vs-condition
+  judgement instead of a flat pass/fail, and escalating with the
+  exact fix each owner needs (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
