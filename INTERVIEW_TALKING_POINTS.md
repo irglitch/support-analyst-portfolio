@@ -499,6 +499,38 @@ handled: stuck transactions caused by a database connection failure."
   judgement instead of a flat pass/fail, and escalating with the
   exact fix each owner needs (see the runbook).
 
+## For Day 20 — Deployment Verification Checker
+- **Situation:** Thursday 09:20, the change manager wants last
+  night's six change tickets closed before the 10:00 settlement
+  batch. Every deployment tool reported "success" — but that is not
+  proof the changes are live, and closing tickets on the tool's word
+  is how "deployed" becomes next week's incident.
+- **Action:** I wrote a Python tool that compares each change's CAB
+  decision against what is observed this morning — deployment status,
+  version and config read back on every instance, health, the smoke
+  test the change promised, error rate against its warning level and
+  rollback trigger, the live certificate expiry, and whether the work
+  finished inside its window. Changes CAB held are verified too:
+  "correctly not deployed" is a result worth proving. Each deployment
+  gets VERIFIED, VERIFIED WITH WARNINGS, or FAILED, with exit codes a
+  scheduler can gate ticket closure on. It only reads and reports —
+  it never deploys or rolls back.
+- **Result (in the scenario):** 🔴 FAILED — 3 of 6 deployments not
+  verified. CHG-8853 is a partial deployment (search-03 still on
+  v4.7.2 while the fleet runs v5.0.0); CHG-8854's invoice-export flag
+  failed its smoke test (HTTP 500) with the error rate at 6.4%, past
+  its 5.0% rollback trigger, so the plan says back out; CHG-8855's
+  renewed certificate sits in the vault while the portal still serves
+  the old one expiring 2026-12-10. CHG-8851 verifies with a warning
+  (11 minutes past the window), and the held reporting index
+  correctly stayed out. The same checks close tonight's pool fix
+  (CHG-8901) tomorrow morning.
+- **What it shows:** Post-implementation verification — proving a
+  change is live on every instance instead of trusting "deployment
+  succeeded", rollback-trigger judgement, and closing the loop Day 19
+  opened: readiness before CAB, verification after the window (see
+  the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
