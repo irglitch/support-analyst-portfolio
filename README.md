@@ -57,6 +57,7 @@ support, and documentation. Full history is on my CV / LinkedIn; this repo shows
 | 18 | [RCA Document Generator](projects/day-18-rca-document-generator/) | INC-2011 P1 checkout 500s (1h 45m, 1,240 failed checkouts, ~$38,450 interrupted) — CHG-8841 cut the connection pool 200 → 50 with no load test; RCA generated FINAL with 5 whys, timeline and 4 owned action items, 0 double-charges verified | ✅ Done 2026-11-24 |
 | 19 | [Change Request Readiness Checker](projects/day-19-change-request-readiness-checker/) | Pre-CAB review of 5 changes — 2 blocked (a "TBD" rollback trigger with approval outstanding, and 70m of work in a 60m window) while the high-risk pool fix is ready, load tested at 1.5× Monday peak | ✅ Done 2026-11-25 |
 | 20 | [Deployment Verification Checker](projects/day-20-deployment-verification-checker/) | Morning after the window: 3 of 6 deployments not verified — a partial fleet (search-03 still on the old build), a flag past its rollback trigger, and a renewed certificate the endpoint never started serving | ✅ Done 2026-11-26 |
+| 21 | [Ticket Categorisation Helper](projects/day-21-ticket-categorisation-helper/) | Friday triage: a checkout outage hiding as a P3 "General" query, its duplicate report, and a settlement file in the wrong queue — re-categorise, raise, link, and send "system slow" back for facts | ✅ Done 2026-11-27 |
 
 Full 30-day plan: **[ROADMAP.md](ROADMAP.md)**
 

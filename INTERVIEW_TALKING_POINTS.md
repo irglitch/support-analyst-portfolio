@@ -531,6 +531,37 @@ handled: stuck transactions caused by a database connection failure."
   opened: readiness before CAB, verification after the window (see
   the runbook).
 
+## For Day 21 — Ticket Categorisation Helper
+- **Situation:** Friday 09:20 triage: eight overnight tickets, and
+  the queue is lying. A checkout outage affecting all customers was
+  logged as a P3 "General" query below a password reset, a second
+  report of the same outage sits unlinked, a missing settlement
+  file is categorised as an application error, and one ticket says
+  only "system slow" with no service named. Working the queue in
+  arrival order means the outage waits.
+- **Action:** I wrote a Python tool that scores transparent keyword
+  rules over each ticket to suggest a category, routing queue, and
+  an impact-based priority — every suggestion shows the keywords
+  that drove it. It flags miscategorisations and priority
+  mismatches, spots likely duplicates (same service plus a shared
+  error code or subject words), and sends low-confidence tickets
+  to human review instead of guessing. A large affected-user count
+  alone never makes a P1: it takes a failure signal alongside the
+  numbers, so a certificate expiring Monday stays P2. It only
+  suggests — the analyst confirms every change.
+- **Result (in the scenario):** 🔴 6 action items. TKT-3101 is a
+  hidden P1 (re-categorise to Service Outage, P3 → P1, work it
+  first); TKT-3102 is the same outage reported again — linked as
+  a duplicate, one master ticket. TKT-3104 re-routes to Batch &
+  File Transfer at P2, TKT-3108 raises to P2 (not P1), and
+  TKT-3107 goes back to the reporter for facts. Three tickets
+  were already correct and needed no action.
+- **What it shows:** Triage judgement — priority from business
+  impact rather than the reporter's guess, duplicate detection so
+  one outage is worked once, and knowing when not to automate a
+  decision: low confidence goes to a human with the question to
+  ask, not a confident wrong route (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
