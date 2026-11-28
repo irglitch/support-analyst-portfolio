@@ -31,7 +31,7 @@ aligned to **Application Support Analyst / Production Support** roles.
 - [x] **Day 19 — Change Request Readiness Checker** (Python)
 - [x] **Day 20 — Deployment Verification Checker** (Python)
 - [x] **Day 21 — Ticket Categorisation Helper** (Python)
-- [ ] **Day 22 — SLA Breach Early Warning** (Python)
+- [x] **Day 22 — SLA Breach Early Warning** (Python)
 - [ ] **Day 23 — Knowledge Base Article Generator** — from a resolved ticket (Python)
 - [ ] **Day 24 — On-Call Handover Report Generator** (Python)
 

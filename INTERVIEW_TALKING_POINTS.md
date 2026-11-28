@@ -562,6 +562,35 @@ handled: stuck transactions caused by a database connection failure."
   decision: low confidence goes to a human with the question to
   ask, not a confident wrong route (see the runbook).
 
+## For Day 22 — SLA Breach Early Warning
+- **Situation:** Saturday 09:20 weekend on-call check: nine open
+  tickets and only one deadline passed, so the queue looks calm.
+  But the checkout P1 has 20 minutes of SLA clock left and 90
+  minutes of work remaining, a settlement ticket is blocked on a
+  bank resend with no update in three hours, and one ticket has
+  sat unassigned since yesterday. A breached-only report finds all
+  of these too late.
+- **Action:** I wrote a Python tool that forecasts each ticket's
+  finish time from the assignee's estimated remaining work and
+  compares it with the SLA deadline, then layers on the
+  slow-motion signals: no update beyond the priority's threshold,
+  unassigned aging, vendor blockers, and one analyst holding
+  several warned tickets at once. Every warning names its action
+  and the clock left to take it in, and exit codes let a scheduler
+  run the sweep hourly. It also flags its own weakness: a stale
+  ticket's estimate may be fiction, so the runbook verifies the
+  estimate before escalating the forecast.
+- **Result (in the scenario):** 🔴 1 breached (CRM sync, 2h 20m
+  over), 2 forecast to breach — the checkout P1 by 1h 10m with
+  20m of clock left, and stale search by 40m with time to save
+  it — plus 3 at risk (blocked, stale, unassigned). The overload
+  flag fired: one analyst held all three breached/forecast
+  tickets, so rebalancing is itself a breach-prevention action.
+- **What it shows:** Breach prevention rather than breach
+  reporting — Day 05 tells you what already breached; this tells
+  you what will, while the decision can still change the outcome
+  (see the runbook).
+
 ## Rules I follow
 - These are **portfolio practice scenarios with sample data** — I say that plainly.
 - I never claim a tool, employer, or certification that isn't on my CV.
